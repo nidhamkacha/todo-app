@@ -43,7 +43,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: TextField(
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Email address';
+                  }
+                  return null;
+                },
                 controller: _EmailController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0),
@@ -65,7 +71,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: TextField(
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Phone Number';
+                  }
+                  return null;
+                },
                 controller: _PhoneController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0),
@@ -86,7 +98,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: TextField(
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Password';
+                  }
+                  return null;
+                },
                 controller: _CreatepassController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0),
@@ -107,7 +125,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: TextField(
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Password';
+                  }
+                  return null;
+                },
                 controller: _ConfirmpassController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0),
@@ -125,6 +149,14 @@ class _CreateAccState extends State<CreateAcc> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()));
+                      }
                       final SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.setString('email', _EmailController.text);
@@ -132,10 +164,10 @@ class _CreateAccState extends State<CreateAcc> {
                       prefs.setString('createpass', _CreatepassController.text);
                       prefs.setString(
                           'confirmpas', _ConfirmpassController.text);
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => LoginScreen()));
                     },
                     child: Text("Create Account")))
           ],
