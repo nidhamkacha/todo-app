@@ -106,16 +106,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home()));
                   }
-                  // if (_EmailController.text == Email &&
-                  //     _passwordController.text == Password) {
-                  //   Navigator.push(context,
-                  //       MaterialPageRoute(builder: (context) => Home()));
-                  // }
                 },
                 child: Text("Login Account"),
               ),
