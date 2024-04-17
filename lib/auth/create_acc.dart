@@ -53,7 +53,10 @@ class _CreateAccState extends State<CreateAcc> {
                 controller: _EmailController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0),
-                    border: InputBorder.none,
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.red, width: 4),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     errorText: _validate ? 'Value Cant be empty' : null,
                     hintText: 'Email',
                     hintStyle: TextStyle(color: tdGrey),
