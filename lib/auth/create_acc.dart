@@ -338,7 +338,25 @@ class _CreateAccState extends State<CreateAcc> {
                             height: 55,
                             width: double.infinity,
                             child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LoginScreen()));
+                                    final SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setString(
+                                        'email', _EmailController.text);
+                                    prefs.setString(
+                                        'phoneno', _PhoneController.text);
+                                    prefs.setString('createpass',
+                                        _CreatepassController.text);
+                                    prefs.setString('confirmpas',
+                                        _ConfirmpassController.text);
+                                  }
+                                },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.black,
                                     shape: RoundedRectangleBorder(
